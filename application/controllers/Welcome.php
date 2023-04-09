@@ -5,13 +5,17 @@ class Welcome extends CI_Controller
 {
 
 
-	// public function __construct()
-	// {
-	// 	// if($this->session->userdata('user') == '') {
-	// 	// 	redirect(base_url());
-	// 	// }
+	public function __construct()
+    {
 
-	// }
+        parent::__construct();
+
+        if ($this->session->userdata('user') == false)
+        {
+            redirect(base_url());
+        }
+
+    }
 
 	public function index()
 	{

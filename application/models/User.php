@@ -8,7 +8,7 @@ class User extends CI_Model
 		$this->db->insert('users', $arr);
 		$insert_id = $this->db->insert_id();
 		$trans['amount'] = 100;
-		$trans['receiver_upi_id'] = 'Singup Bonus';
+		$trans['sender_upi_id'] = 'Singup Bonus';
 		$trans['receiver_id'] = $insert_id;
 		$this->db->insert('trasanctions', $trans);
 		$this->db->trans_complete();
