@@ -69,7 +69,13 @@ class User extends CI_Model
 				$this->db->query("update users set amount = (amount-$amount) where id = '$id'");
 				$this->db->query("update users set amount = (amount+$amount) where id = '$upi->id'");
 				$this->db->trans_complete();
-				return ['status' => true, 'message' => 'Successfully transfer..'];
+				if ($this->db->trans_status() === FALSE) {
+					$this->db->trans_rollback();
+					return ['status' => true, 'message' => 'Successfully transfer..'];
+				} else {
+					$this->db->trans_commit();
+					return ['status' => false, 'message' => 'Something Wrong..'];
+				}
 			} else {
 				return ['status' => false, 'message' => 'Low balance..'];
 			}
