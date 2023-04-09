@@ -71,10 +71,10 @@ class User extends CI_Model
 				$this->db->trans_complete();
 				if ($this->db->trans_status() === FALSE) {
 					$this->db->trans_rollback();
-					return ['status' => true, 'message' => 'Successfully transfer..'];
+					return ['status' => false, 'message' => 'Something Wrong..'];
 				} else {
 					$this->db->trans_commit();
-					return ['status' => false, 'message' => 'Something Wrong..'];
+					return ['status' => true, 'message' => 'Successfully transfer..'];
 				}
 			} else {
 				return ['status' => false, 'message' => 'Low balance..'];
